@@ -1,12 +1,16 @@
 {
   "name": "test-ts-redis",
-  "packageManager": "yarn@4.0.2",
+  "packageManager": "yarn@4.5.2",
   "scripts": {
     "start": "tsx ./src/main.ts"
   },
   "devDependencies": {
     "@types/node": "^22.9.1",
     "tsx": "^4.19.2",
-    "typescript": "^5.6.3"
+    "typescript": "5.6.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "fastify": "^5.1.0"
   }
 }
