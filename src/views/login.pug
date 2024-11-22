@@ -1,0 +1,22 @@
+extends layout.pug
+
+block contenido
+    .columns
+        .column.col-12
+            .text-center
+                h1 Login
+    .columns
+        .column.col-9
+            form.form-horizontal(method="POST" action="login" ) 
+                .form-group
+                    .col-3.col-sm-12
+                        label.form-label(for="email") Dirección de e-mail
+                    .col-9.col-sm-12
+                        input#email.form-input(type="email" placeholder="E-mail" name="email")
+                .form-group
+                    .col-3.col-sm-12
+                        label.form-label(for="password") Contraseña
+                    .col-9.col-sm-12
+                        input#password.form-input(type="password" placeholder="Contraseña" name="password")
+                .col-12
+                    input.btn.btn-primary(type="submit", value="Registrarse!!")
