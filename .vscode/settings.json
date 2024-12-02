@@ -8,5 +8,8 @@
   "files.exclude": {
     "**/.yarn": true,
     "**/.pnp.*":true
-  }
+  },
+  "prettier.semi": false,
+  "prettier.tabWidth": 2,
+  "editor.tabSize": 2
 }
