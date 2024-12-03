@@ -16,8 +16,9 @@
     "@fastify/session": "^11.0.1",
     "@fastify/view": "^10.0.1",
     "dayjs": "^1.11.13",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.4.6",
     "fastify": "^5.1.0",
+    "neon-env": "^0.2.2",
     "pug": "^3.0.3"
   }
 }

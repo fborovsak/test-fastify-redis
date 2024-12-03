@@ -5,6 +5,16 @@ import pug from "pug"
 import fastifyFormbody from "@fastify/formbody"
 import fastifyCookie from "@fastify/cookie"
 import fastifySession from "@fastify/session"
+import tenv from "./env-vars"
+import { TUserData } from "./tipos"
+
+declare module "fastify" {
+  interface Session {
+      isAuth: boolean
+      user: TUserData
+  }
+}
+
 
 export default function createServer() {
   const fastify = Fastify({
@@ -12,12 +22,10 @@ export default function createServer() {
   })
   fastify.register(fastifyCookie)
   fastify.register(fastifySession, {
-    secret:
-      process.env.SESSION_SECRET ||
-      "a secret with minimum length of 32 characters",
+    secret: tenv.SESSION_SECRET,
     cookieName: "sessionId",
     cookie: {
-      maxAge: Number(process.env.COOKIES_MAXAGE || 1) * 60 * 1000,
+      maxAge: tenv.COOKIES_MAXAGE * 60 * 1000,
       secure: false,
     },
   })

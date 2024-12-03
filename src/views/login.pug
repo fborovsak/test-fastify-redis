@@ -19,4 +19,9 @@ block contenido
                     .col-9.col-sm-12
                         input#password.form-input(type="password" placeholder="Contraseña" name="password")
                 .col-12
-                    input.btn.btn-primary(type="submit", value="Registrarse!!")
+                    input.btn.btn-primary(type="submit", value="Ingresar!!")
+    if error
+        .columns
+            .columns.col-12
+                .toast.toast-error #{error}
+            

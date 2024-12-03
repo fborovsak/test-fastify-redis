@@ -634,10 +634,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.4.5":
-  version: 16.4.5
-  resolution: "dotenv@npm:16.4.5"
-  checksum: 10c0/48d92870076832af0418b13acd6e5a5a3e83bb00df690d9812e94b24aff62b88ade955ac99a05501305b8dc8f1b0ee7638b18493deb6fe93d680e5220936292f
+"dotenv@npm:^16.4.6":
+  version: 16.4.6
+  resolution: "dotenv@npm:16.4.6"
+  checksum: 10c0/6c0c0c82eaa0ca6cc7193b2550920ec6d2eabfe32498bf454c0a1187c0680c79daa199ba873d33692f055755e5068f862689aca03bc8ff57e7d70302f3152012
   languageName: node
   linkType: hard
 
@@ -1401,6 +1401,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"neon-env@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "neon-env@npm:0.2.2"
+  checksum: 10c0/87cfe45bd490fb88a48e993f9e9a48176fcb483b31057ef7b047c6ac9db4cc90a06f058d2806945c60abfc13c3b2159cb28deae6241e4fbbdaf4ba990add05ca
+  languageName: node
+  linkType: hard
+
 "node-gyp@npm:latest":
   version: 10.2.0
   resolution: "node-gyp@npm:10.2.0"
@@ -1990,8 +1997,9 @@ __metadata:
     "@types/node": "npm:^22.9.1"
     "@types/pug": "npm:^2.0.10"
     dayjs: "npm:^1.11.13"
-    dotenv: "npm:^16.4.5"
+    dotenv: "npm:^16.4.6"
     fastify: "npm:^5.1.0"
+    neon-env: "npm:^0.2.2"
     pug: "npm:^3.0.3"
     tsx: "npm:^4.19.2"
     typescript: "npm:5.6.2"

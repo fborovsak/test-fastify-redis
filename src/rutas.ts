@@ -1,17 +1,15 @@
 import { FastifyInstance } from "fastify"
 import { TLoginPostBody, TRegisterPostBody, TUserData } from "./tipos"
-import { validarRegistro } from "./validaciones"
-import { agregarNuevoUsuario } from "./usuarios"
+import { validarLoginUsuario, validarRegistro } from "./validaciones"
+import { agregarNuevoUsuario, checkUserEmailPass, loginUser } from "./usuarios"
 
 const pugViews = {
-  login: "login.pug",
-  register: "register.pug",
-  root: "root.pug",
-  thankyou: "thankyou.png",
-  user: "user.png"
+  login: "login",
+  register: "register",
+  root: "root",
+  thankyou: "thankyou",
+  user: "user"
 }
-
-const users:TUserData[] = []
 
 export default function rutas(fastify: FastifyInstance) {
   fastify.get("/", (req, res) => {
@@ -44,10 +42,22 @@ export default function rutas(fastify: FastifyInstance) {
 
   fastify.post("/login", (req, res) => {
     const body = req.body as Partial<TLoginPostBody>
-    res.redirect("/user")
+    try {
+      validarLoginUsuario(body)
+      const user = checkUserEmailPass(body.email!, body.password!)
+      loginUser(user)
+      req.session.set('isAuth', true)
+      req.session.set('user', user)
+      res.redirect("/user")
+    } catch (err:any) {
+      const error = err.toString()
+      res.status(400).view(pugViews.login, {error, email: body.email})
+    }
   })
 
   fastify.get("/user", (req, res) => {
-    res.view(pugViews.user, { titulo: "Centro de usuarios" })
+    const user = req.session.get('user')
+    const nombreUsuario = user?.fullname || "Anónimo"
+    res.view(pugViews.user, { titulo: "Centro de usuarios", nombreUsuario })
   })
 }
