@@ -1,4 +1,6 @@
-extends layout.pug
+extends layout
+include ./mixins/bloques
+include ./mixins/forms
 
 block contenido
     .columns
@@ -7,21 +9,12 @@ block contenido
                 h1 Login
     .columns
         .column.col-9
-            form.form-horizontal(method="POST" action="login" ) 
-                .form-group
-                    .col-3.col-sm-12
-                        label.form-label(for="email") Dirección de e-mail
-                    .col-9.col-sm-12
-                        input#email.form-input(type="email" placeholder="E-mail" name="email")
-                .form-group
-                    .col-3.col-sm-12
-                        label.form-label(for="password") Contraseña
-                    .col-9.col-sm-12
-                        input#password.form-input(type="password" placeholder="Contraseña" name="password")
+            form.form-horizontal(method="POST" action="login" )
+                +formInput("email", "Dirección de e-mail", {type:"email", placeholder:"E-mail", value:email})
+                +formInput("password", "Contraseña", {type:"password", placeholder:"Contraseña"})
                 .col-12
                     input.btn.btn-primary(type="submit", value="Ingresar!!")
     if error
-        .columns
-            .columns.col-12
-                .toast.toast-error #{error}
+        +toastSimple(error)(class='toast-error')
+        
             

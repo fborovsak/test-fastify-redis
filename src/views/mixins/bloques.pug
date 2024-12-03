@@ -1,0 +1,4 @@
+mixin toastSimple(mensaje,tamanio = 12)
+  .columns
+    .columns(class=`col-${tamanio}`)
+        .toast(class!=attributes.class) #{mensaje}

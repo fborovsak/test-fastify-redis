@@ -1,4 +1,6 @@
-extends layout.pug
+extends layout
+include ./mixins/bloques
+include ./mixins/forms
 
 block contenido
     .columns
@@ -7,21 +9,11 @@ block contenido
                 h1 Registrese aquí
     .columns
         .column.col-9
-            form.form-horizontal(method="POST" action="register" ) 
-                .form-group
-                    .col-3.col-sm-12
-                        label.form-label(for="fullname") Nombre
-                    .col-9.col-sm-12
-                        input#fullname.form-input(type="text" placeholder="Nombre" name="fullname" required)
-                .form-group
-                    .col-3.col-sm-12
-                        label.form-label(for="email") Dirección de e-mail
-                    .col-9.col-sm-12
-                        input#email.form-input(type="email" placeholder="E-mail" name="email" required)
-                .form-group
-                    .col-3.col-sm-12
-                        label.form-label(for="password") Contraseña
-                    .col-9.col-sm-12
-                        input#password.form-input(type="password" placeholder="Contraseña" name="password" required)
+            form.form-horizontal(method="POST" action="register" )
+                +formInput("fullname", "Nombre", {type:"text", placeholder:"Nombre", value:fullName, required:true})
+                +formInput("email", "Dirección de e-mail", {type:"E-mail", placeholder:"Nombre", value:email, required:true})
+                +formInput("password", "Contraseña", {type:"password", placeholder:"Contraseña", required:true})
                 .col-12
                     input.btn.btn-primary(type="submit", value="Registrarse!!")
+    if error
+        +toastSimple(error)(class='toast-error')

@@ -10,7 +10,7 @@
             "request": "launch",
         
             // Debug current file in VSCode
-            "args": ["tsx", "${workspaceFolder}/src/main.ts"],
+            "args": ["tsx", "watch", "${workspaceFolder}/src/main.ts"],
             /*
              * Path to tsx binary
              * Assuming locally installed

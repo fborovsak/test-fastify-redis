@@ -28,7 +28,7 @@ export default function rutas(fastify: FastifyInstance) {
       res.redirect("/registerDone")
     } catch (err:any) {
       const error = err.toString()
-      res.status(400).view(pugViews.register, {error, fullName: body.fullname, email: body.email})
+      res.status(400).view(pugViews.register, {error, fullName: body.fullname, email: body.email, titulo: "Registro de usuarios"})
     }
   })
 
@@ -51,7 +51,7 @@ export default function rutas(fastify: FastifyInstance) {
       res.redirect("/user")
     } catch (err:any) {
       const error = err.toString()
-      res.status(400).view(pugViews.login, {error, email: body.email})
+      res.status(400).view(pugViews.login, {error, email: body.email, titulo: "Login de usuarios registrados"})
     }
   })
 

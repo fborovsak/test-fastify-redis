@@ -1,0 +1,6 @@
+mixin formInput(name, label, data)
+  .form-group
+    .col-3.col-sm-12
+        label.form-label(for= name)= label
+    .col-9.col-sm-12
+        input.form-input(type=data.type placeholder=data.placeholder name=name value=data.value required=data.required id=data.id)
