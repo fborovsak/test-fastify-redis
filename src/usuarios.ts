@@ -41,3 +41,10 @@ export function loginUser(user: TUserData) {
   user.dateExpireSession = dayjs().add(tenv.SESSION_LIFETIME).toDate()
   users[idx] = user
 }
+
+export function logoutUser(user: TUserData) {
+  const idx = users.findIndex(u => u.email === user.email)
+  user.loggedIn = false
+  user.dateExpireSession = undefined
+  users[idx] = user
+}

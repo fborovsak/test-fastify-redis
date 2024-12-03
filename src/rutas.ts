@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify"
 import { TLoginPostBody, TRegisterPostBody, TUserData } from "./tipos"
 import { validarLoginUsuario, validarRegistro } from "./validaciones"
-import { agregarNuevoUsuario, checkUserEmailPass, loginUser } from "./usuarios"
+import { agregarNuevoUsuario, checkUserEmailPass, loginUser, logoutUser } from "./usuarios"
 
 const pugViews = {
   login: "login",
@@ -59,5 +59,15 @@ export default function rutas(fastify: FastifyInstance) {
     const user = req.session.get('user')
     const nombreUsuario = user?.fullname || "Anónimo"
     res.view(pugViews.user, { titulo: "Centro de usuarios", nombreUsuario })
+  })
+
+  fastify.get("/logout", (req, res) => {
+    const user = req.session.get('user')
+    if (user) {
+      logoutUser(user)
+    }
+    req.session.set('isAuth', false)
+    req.session.set('user', undefined)
+    res.redirect("/")
   })
 }

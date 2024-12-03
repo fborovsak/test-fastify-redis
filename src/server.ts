@@ -11,7 +11,7 @@ import { TUserData } from "./tipos"
 declare module "fastify" {
   interface Session {
       isAuth: boolean
-      user: TUserData
+      user?: TUserData
   }
 }
 
