@@ -4,8 +4,6 @@ import { validarLoginUsuario, validarRegistro } from "./validaciones"
 import {
   agregarNuevoUsuario,
   checkUserEmailPass,
-  loginUser,
-  logoutUser,
 } from "./usuarios"
 
 const pugViews = {
@@ -73,8 +71,6 @@ export default function rutas(fastify: FastifyInstance) {
     try {
       validarLoginUsuario(body)
       const user = checkUserEmailPass(body.email!, body.password!)
-      loginUser(user)
-      req.session.set("isAuth", true)
       req.session.set("user", user)
       res.redirect("/user")
     } catch (err: any) {
@@ -94,10 +90,6 @@ export default function rutas(fastify: FastifyInstance) {
   })
 
   fastify.get("/logout", privateRouteHook, (req, res) => {
-    const user = req.session.get("user")
-    if (user) {
-      logoutUser(user)
-    }
     req.session.destroy()
     res.redirect("/")
   })

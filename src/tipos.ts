@@ -14,6 +14,17 @@ export type TUserData = {
   fullname: string
   email: string
   passwordHash: string
-  loggedIn: boolean
-  dateExpireSession?: Date
+}
+
+export type UserSession= {
+  email: string
+  fullname: string
+}
+
+declare module "fastify" {
+  interface Session {
+    isAuth: boolean
+    user?: UserSession
+    dateExpireSession?: Date
+  }
 }
