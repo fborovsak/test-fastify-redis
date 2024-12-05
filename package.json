@@ -2,7 +2,7 @@
   "name": "test-ts-redis",
   "packageManager": "yarn@4.5.2",
   "scripts": {
-    "start": "tsx watch ./src/main.ts"
+    "start": "tsx ./src/main.ts"
   },
   "devDependencies": {
     "@types/node": "^22.9.1",

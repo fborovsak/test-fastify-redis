@@ -10,11 +10,10 @@ import { TUserData } from "./tipos"
 
 declare module "fastify" {
   interface Session {
-      isAuth: boolean
-      user?: TUserData
+    isAuth: boolean
+    user?: TUserData
   }
 }
-
 
 export default function createServer() {
   const fastify = Fastify({
@@ -31,6 +30,10 @@ export default function createServer() {
   })
 
   fastify.register(fastifyFormbody)
+
+  fastify.addHook("preHandler", async (req, res) => {
+    console.log(req.session.get("isAuth"))
+  })
 
   fastify.register(fastifyView, {
     engine: {
