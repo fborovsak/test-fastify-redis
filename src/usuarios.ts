@@ -38,7 +38,7 @@ export function checkUserEmailPass(email: string, password: string) {
 export function loginUser(user: TUserData) {
   const idx = users.findIndex(u => u.email === user.email)
   user.loggedIn = true
-  user.dateExpireSession = dayjs().add(tenv.SESSION_LIFETIME).toDate()
+  user.dateExpireSession = dayjs().add(tenv.SESSION_LIFETIME * 60, 'seconds').toDate()
   users[idx] = user
 }
 

@@ -20,8 +20,8 @@ const privateRouteHook: Partial<Parameters<FastifyInstance["get"]>["1"]> = {
   preParsing: async (req, res) => {
     if (!req.session.get("isAuth")) {
       res.redirect("/")
+      return res
     }
-    return res
   },
 }
 
@@ -29,13 +29,13 @@ const publicRouteHook: Partial<Parameters<FastifyInstance["get"]>["1"]> = {
   preParsing: async (req, res) => {
     if (req.session.get("isAuth")) {
       res.redirect("/user")
+      return res
     }
-    return res
   },
 }
 
 export default function rutas(fastify: FastifyInstance) {
-  fastify.get("/", (req, res) => {
+  fastify.get("/", publicRouteHook, (req, res) => {
     res.view(pugViews.root)
   })
 
@@ -51,14 +51,12 @@ export default function rutas(fastify: FastifyInstance) {
       res.redirect("/registerDone")
     } catch (err: any) {
       const error = err.toString()
-      res
-        .status(400)
-        .view(pugViews.register, {
-          error,
-          fullName: body.fullname,
-          email: body.email,
-          titulo: "Registro de usuarios",
-        })
+      res.status(400).view(pugViews.register, {
+        error,
+        fullName: body.fullname,
+        email: body.email,
+        titulo: "Registro de usuarios",
+      })
     }
   })
 
@@ -81,13 +79,11 @@ export default function rutas(fastify: FastifyInstance) {
       res.redirect("/user")
     } catch (err: any) {
       const error = err.toString()
-      res
-        .status(400)
-        .view(pugViews.login, {
-          error,
-          email: body.email,
-          titulo: "Login de usuarios registrados",
-        })
+      res.status(400).view(pugViews.login, {
+        error,
+        email: body.email,
+        titulo: "Login de usuarios registrados",
+      })
     }
   })
 

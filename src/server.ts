@@ -32,7 +32,18 @@ export default function createServer() {
   fastify.register(fastifyFormbody)
 
   fastify.addHook("preHandler", async (req, res) => {
-    console.log(req.session.get("isAuth"))
+    if (req.url !== "/logout") {
+      if (req.session.get("isAuth")) {
+        const user = req.session.get("user")
+        if (user) {
+          const tiempo = user.dateExpireSession?.getTime()
+          if (tiempo && tiempo < Date.now()) {
+            res.redirect("/logout")
+            return res
+          }
+        }
+      }
+    }
   })
 
   fastify.register(fastifyView, {
