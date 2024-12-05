@@ -4,6 +4,7 @@ import 'dotenv/config'
 
 const tenv = createEnv({
   HTTP_PORT: { type: "number", default: 56129 },
+  REDIS_HOST: { type: "string", default: "127.0.0.1" },
   REDIS_PORT: { type: "number", default: 6379 },
   COOKIES_MAXAGE: { type: "number", default: 1 },
   SESSION_LIFETIME: { type: "number", default: 1 },
